@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+scripts/.env
+
+# Working notes used to plan the rewrite (kept locally)
+PROMPT_GIFTLIST.md
+prompt-novo-projeto.md

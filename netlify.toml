@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# React Router uses client-side routing — without this, refreshing on
+# a route like /expenses would 404 (Netlify would look for a real
+# /expenses file). This sends every path to index.html and lets the
+# app's own router take over from there.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
