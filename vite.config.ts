@@ -14,8 +14,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['apple-touch-icon.png'],
       manifest: {
-        name: 'GiftList',
-        short_name: 'GiftList',
+        name: 'Gifts of Love',
+        short_name: 'Gifts of Love',
         description: 'Presentes, dates e planos do casal',
         theme_color: '#120E1F',
         background_color: '#120E1F',

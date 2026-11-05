@@ -41,7 +41,7 @@ export function noticeText(notice: Notice, actor: string): string {
     case 'entry_declined': return `${actor} recusou ${item} em ${day}`;
     case 'entry_cancelled': return `O plano ${item} de ${day} foi cancelado`;
     case 'entry_done': return `${actor} marcou ${item} como feito — avalie também!`;
-    case 'couple_linked': return 'Vocês estão vinculados! Bem-vindos ao GiftList 💞';
+    case 'couple_linked': return 'Vocês estão vinculados! Bem-vindos ao Gifts of Love 💞';
   }
 }
 

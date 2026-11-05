@@ -34,7 +34,7 @@ export default function Home() {
       <div className="mb-6">
         <h1 className="font-display text-2xl sm:text-3xl font-bold text-[var(--color-ink)]">Oi, {me.name} 💞</h1>
         <p className="text-sm text-[var(--color-muted)] mt-1">
-          {partner ? `O que você e ${partner.name} têm pela frente.` : 'Bem-vindo(a) ao GiftList.'}
+          {partner ? `O que você e ${partner.name} têm pela frente.` : 'Bem-vindo(a) ao Gifts of Love.'}
         </p>
       </div>
 

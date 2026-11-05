@@ -177,7 +177,7 @@ function Shell() {
           {!collapsed && (
             <NavLink to="/" viewTransition className="flex items-center gap-2.5 min-w-0 no-underline">
               <img src="/icon-192.png" alt="" className="w-8 h-8 rounded-xl" />
-              <span className="font-display text-xl font-bold text-brand truncate">GiftList</span>
+              <span className="font-display text-lg font-bold text-brand truncate">Gifts of Love</span>
             </NavLink>
           )}
           <button
@@ -252,7 +252,7 @@ function Shell() {
         <div className="h-14 flex items-center justify-between">
           <NavLink to="/" viewTransition className="flex items-center gap-2 no-underline">
             <img src="/icon-192.png" alt="" className="w-7 h-7 rounded-lg" />
-            <span className="font-display text-lg font-bold text-brand">GiftList</span>
+            <span className="font-display text-lg font-bold text-brand">Gifts of Love</span>
           </NavLink>
           <div className="flex items-center">
             <NoticeBell />

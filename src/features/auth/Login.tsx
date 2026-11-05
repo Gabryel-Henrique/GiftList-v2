@@ -103,7 +103,7 @@ export default function Login() {
               className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl shadow-[var(--shadow-glow)]"
             />
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-brand mt-5">GiftList</h1>
+          <h1 className="font-display text-3xl sm:text-4xl font-bold text-brand mt-5">Gifts of Love</h1>
           <p className="text-sm text-[var(--color-muted)] mt-1">
             Presentes, dates e planos do casal, num lugar só.
           </p>

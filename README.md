@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="public/icon-192.png" alt="GiftList" width="96" />
+  <img src="public/icon-192.png" alt="Gifts of Love" width="96" />
 </p>
 
-<h1 align="center">GiftList</h1>
+<h1 align="center">Gifts of Love</h1>
 
 <p align="center">Presentes, dates e planos do casal, num lugar só.</p>
 
 ---
 
-O GiftList é um app privado para um casal organizar junto os presentes, os lugares e programas que querem fazer e a agenda dos dois. Esta é a segunda versão: a primeira era em .NET/Blazor e foi reescrita como PWA, para funcionar bem no celular.
+O Gifts of Love é um app privado para um casal organizar junto os presentes, os lugares e programas que querem fazer e a agenda dos dois. Esta é a segunda versão: a primeira se chamava GiftList, era em .NET/Blazor e foi reescrita como PWA, para funcionar bem no celular.
 
 Funciona no navegador e pode ser instalado no celular como app (PWA).
 

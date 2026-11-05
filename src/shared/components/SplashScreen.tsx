@@ -30,7 +30,7 @@ export default function SplashScreen({ delay = 300 }: { delay?: number }) {
               className="anim-logo-pulse relative w-20 h-20 rounded-2xl shadow-lg shadow-black/20 ring-1 ring-[var(--color-primary)]/30"
             />
           </div>
-          <p className="font-display text-xl font-bold text-brand mt-6">GiftList</p>
+          <p className="font-display text-xl font-bold text-brand mt-6">Gifts of Love</p>
           <div className="flex gap-1.5 mt-3" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <span
