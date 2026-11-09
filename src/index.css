@@ -88,6 +88,16 @@ html, body, #root {
   height: 100%;
 }
 
+/* Keep the installed app at 1:1 like a native app. iOS otherwise zooms in on
+   a quick double tap (and the installed app has no way to zoom back out) and
+   inflates text in landscape. `manipulation` keeps scroll and pinch but drops
+   double-tap zoom; maximum-scale=1 in index.html stops focus zoom on iOS. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
 body {
   margin: 0;
   background-color: var(--color-bg);
