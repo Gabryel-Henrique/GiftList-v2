@@ -1,5 +1,5 @@
-import { useState, type FormEvent } from 'react';
-import { Button, Card, Field, Input, PageHeader, Segmented, Spinner } from '../../shared/components/ui';
+import { useEffect, useState, type FormEvent } from 'react';
+import { Button, Card, Field, Input, PageHeader, Segmented, Spinner, Toggle } from '../../shared/components/ui';
 import { Credits } from '../../shared/components/Credits';
 import { LogoutIcon } from '../../shared/components/icons';
 import { supabase } from '../../shared/lib/supabaseClient';
@@ -7,6 +7,7 @@ import { useCouple, type Gender } from '../../shared/lib/useCouple';
 import { pushToast } from '../../shared/lib/toast';
 import { toggleTheme, useTheme } from '../../shared/lib/theme';
 import { MIN_PASSWORD_LENGTH } from '../../shared/lib/validation';
+import { disablePush, enablePush, getPushStatus, signOutDevice, type PushStatus } from '../../shared/lib/push';
 
 export default function Profile() {
   const { me, partner } = useCouple();
@@ -17,6 +18,7 @@ export default function Profile() {
       <PageHeader title="Perfil" subtitle={`Seu usuário: ${me.username}`} />
       <div className="space-y-4">
         <ProfileForm key={me.id + me.name + me.gender} />
+        <NotificationsCard />
         <PasswordForm />
         <Card className="anim-fade-up p-5">
           <h2 className="font-display font-semibold text-[var(--color-ink)] mb-3">Aparência</h2>
@@ -34,7 +36,7 @@ export default function Profile() {
             Vinculado(a) com <span className="font-medium text-[var(--color-ink)]">{partner.name}</span>.
           </p>
         )}
-        <Button variant="danger" className="w-full border border-[var(--color-border)] py-2.5" onClick={() => supabase.auth.signOut()}>
+        <Button variant="danger" className="w-full border border-[var(--color-border)] py-2.5" onClick={signOutDevice}>
           <LogoutIcon /> Sair da conta
         </Button>
       </div>
@@ -95,6 +97,60 @@ function ProfileForm() {
           Salvar
         </Button>
       </form>
+    </Card>
+  );
+}
+
+function NotificationsCard() {
+  const [status, setStatus] = useState<PushStatus | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    getPushStatus().then(setStatus, () => setStatus('unsupported'));
+  }, []);
+
+  async function handleToggle(on: boolean) {
+    setBusy(true);
+    try {
+      if (on) {
+        const next = await enablePush();
+        setStatus(next);
+        if (next === 'on') pushToast('Notificações ativadas neste celular!', 'success');
+      } else {
+        await disablePush();
+        setStatus('off');
+        pushToast('Notificações desativadas neste celular.', 'success');
+      }
+    } catch {
+      pushToast('Não foi possível mudar as notificações. Tente novamente.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const hint: Record<PushStatus, string> = {
+    on: 'Você recebe no celular os avisos do seu par, mesmo com o app fechado.',
+    off: 'Receba no celular os avisos do seu par (presentes, planos, avaliações…), mesmo com o app fechado.',
+    denied: 'As notificações foram bloqueadas. Libere nas configurações do celular (Notificações → Gifts of Love) e volte aqui.',
+    'needs-install': 'No iPhone, as notificações só funcionam pelo app instalado: no Safari, toque em Compartilhar → "Adicionar à Tela de Início" e abra o app por lá.',
+    unsupported: 'Este navegador não suporta notificações. No celular, use o app instalado.',
+  };
+
+  return (
+    <Card className="anim-fade-up p-5">
+      <h2 className="font-display font-semibold text-[var(--color-ink)] mb-3">Notificações no celular</h2>
+      {status === null ? (
+        <Spinner />
+      ) : (
+        <>
+          {(status === 'on' || status === 'off') && (
+            <div className={busy ? 'opacity-60 pointer-events-none' : ''}>
+              <Toggle checked={status === 'on'} onChange={handleToggle} label={status === 'on' ? 'Ativadas' : 'Desativadas'} />
+            </div>
+          )}
+          <p className={`text-xs text-[var(--color-muted)] ${status === 'on' || status === 'off' ? 'mt-2' : ''}`}>{hint[status]}</p>
+        </>
+      )}
     </Card>
   );
 }

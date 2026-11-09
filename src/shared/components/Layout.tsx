@@ -1,12 +1,12 @@
 import { Suspense, useEffect, useState, type ComponentType } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient';
 import { useCouple } from '../lib/useCouple';
 import { CoupleProvider } from '../lib/CoupleContext';
 import { partnerLabels } from '../lib/partnerLabels';
 import { toggleTheme, useTheme } from '../lib/theme';
 import { startNotices, useNotices } from '../lib/notices';
 import { pushToast } from '../lib/toast';
+import { signOutDevice } from '../lib/push';
 import { noticeText } from '../../features/notices/noticeText';
 import Toaster from './Toaster';
 import ConfirmHost from './ConfirmHost';
@@ -79,7 +79,7 @@ function readCollapsed(): boolean {
 }
 
 function signOut() {
-  supabase.auth.signOut();
+  signOutDevice();
 }
 
 // The couple is loaded once here and shared with every page (useCouple).

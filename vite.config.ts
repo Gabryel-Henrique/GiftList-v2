@@ -13,6 +13,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['apple-touch-icon.png'],
+      // Push + notification-click handlers (phone notifications).
+      workbox: { importScripts: ['push-sw.js'] },
       manifest: {
         name: 'Gifts of Love',
         short_name: 'Gifts of Love',
